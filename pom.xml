@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.2.0</version>
+        <relativePath/>
+    </parent>
+
+    <groupId>com.codereviewbot</groupId>
+    <artifactId>codereview-bot</artifactId>
+    <version>1.0.0</version>
+    <name>CodeReview Bot</name>
+    <description>AI-powered GitHub PR Code Review Bot using Spring Boot and Groq</description>
+
+    <properties>
+        <java.version>17</java.version>
+    </properties>
+
+    <dependencies>
+        <!-- Spring Boot Core -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <!-- For rate limiting via bucket4j -->
+        <dependency>
+            <groupId>com.bucket4j</groupId>
+            <artifactId>bucket4j_jdk17-core</artifactId>
+            <version>8.7.0</version>
+        </dependency>
+
+        <!-- HTTP client for GitHub and Groq API calls -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-webflux</artifactId>
+        </dependency>
+
+        <!-- Jackson for JSON parsing -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+        </dependency>
+
+        <!-- Lombok to reduce boilerplate -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <!-- Actuator for health checks (useful for Railway deployment) -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+
+        <!-- Test dependencies -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <excludes>
+                        <exclude>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                        </exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

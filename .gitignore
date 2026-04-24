@@ -1,0 +1,14 @@
+# Build output — never push this
+target/
+
+# IntelliJ files
+.idea/
+*.iml
+
+# Environment files — NEVER push these
+.env
+*.env
+
+# OS files
+.DS_Store
+Thumbs.db
