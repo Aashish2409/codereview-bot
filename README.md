@@ -1,11 +1,11 @@
-# 🤖 CodeReview Bot
+# CodeReview Bot
 
 An AI-powered GitHub Pull Request review bot built with **Spring Boot** and **Groq LLaMA 3**.  
 When a PR is opened, the bot automatically fetches the diff, sends it to an AI model, and posts a detailed code review as a GitHub comment.
 
 ---
 
-## ✨ Features
+## Features
 
 - **Automatic PR reviews** via GitHub Webhooks
 - **AI-powered feedback** using Groq's LLaMA 3 (70B)
@@ -15,7 +15,7 @@ When a PR is opened, the bot automatically fetches the diff, sends it to an AI m
 
 ---
 
-## 🔐 Security Implementations
+## Security Implementations
 
 | Threat | Defence |
 |---|---|
@@ -29,7 +29,7 @@ When a PR is opened, the bot automatically fetches the diff, sends it to an AI m
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 ### 1. Clone and configure environment variables
 
@@ -78,7 +78,7 @@ Open a Pull Request on your repo — the bot will comment within ~10 seconds.
 
 ---
 
-## 🌐 API Endpoints
+## API Endpoints
 
 | Method | Endpoint | Description |
 |---|---|---|
@@ -88,22 +88,11 @@ Open a Pull Request on your repo — the bot will comment within ~10 seconds.
 | GET | `/api/health` | Health check |
 
 ---
-
-## ☁️ Deploy to Railway
-
-```bash
-# Build
-mvn clean package -DskipTests
-
-# Push to GitHub, then on Railway:
-# New Project → Deploy from GitHub → Select repo
-# Add env vars: GITHUB_TOKEN, GITHUB_WEBHOOK_SECRET, GROQ_API_KEY
-# Update your GitHub webhook URL to the Railway URL
 ```
 
 ---
 
-## 🏗️ Project Structure
+## Project Structure
 
 ```
 src/main/java/com/codereviewbot/
