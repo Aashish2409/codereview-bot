@@ -1,22 +1,21 @@
 # CodeReview Bot
-
-An AI-powered GitHub Pull Request review bot built with **Spring Boot** and **Groq LLaMA 3**.  
+An AI-powered GitHub Pull Request review bot built with **Spring Boot** and **Groq LLaMA 3.3 70B**.  
 When a PR is opened, the bot automatically fetches the diff, sends it to an AI model, and posts a detailed code review as a GitHub comment.
 
 ---
 
-## Features
+![Demo](demo.gif)
 
+## Features
 - **Automatic PR reviews** via GitHub Webhooks
-- **AI-powered feedback** using Groq's LLaMA 3 (70B)
+- **AI-powered feedback** using Groq LLaMA 3.3 70B
 - **Security hardened**: HMAC-SHA256 signature verification, prompt injection guards, rate limiting
-- **Dashboard API** for frontend visualization of review history
-- **One-click deployment** to Railway via Docker
+- **Review history API** with stats endpoint
+- **Dockerized** for easy deployment
 
 ---
 
 ## Security Implementations
-
 | Threat | Defence |
 |---|---|
 | Forged webhooks | HMAC-SHA256 signature verification (constant-time compare) |
@@ -32,12 +31,10 @@ When a PR is opened, the bot automatically fetches the diff, sends it to an AI m
 ## Quick Start
 
 ### 1. Clone and configure environment variables
-
 ```bash
-git clone https://github.com/YOUR_USERNAME/codereview-bot
+git clone https://github.com/Aashish2409/codereview-bot
 cd codereview-bot
 ```
-
 Create a `.env` file (never commit this):
 ```env
 GITHUB_TOKEN=github_pat_xxxx
@@ -46,26 +43,21 @@ GROQ_API_KEY=gsk_xxxx
 ```
 
 ### 2. Run locally
-
 ```bash
-# Export env vars
 export GITHUB_TOKEN=github_pat_xxxx
 export GITHUB_WEBHOOK_SECRET=your_secret
 export GROQ_API_KEY=gsk_xxxx
 
-# Run
 mvn spring-boot:run
 ```
 
 ### 3. Expose localhost with ngrok
-
 ```bash
 ngrok http 8080
 # Copy the https URL e.g. https://abc123.ngrok.io
 ```
 
 ### 4. Configure GitHub Webhook
-
 - Go to your repo → **Settings → Webhooks → Add webhook**
 - Payload URL: `https://abc123.ngrok.io/webhook`
 - Content type: `application/json`
@@ -73,22 +65,17 @@ ngrok http 8080
 - Events: **Pull requests** only
 
 ### 5. Test it!
-
 Open a Pull Request on your repo — the bot will comment within ~10 seconds.
 
 ---
 
 ## API Endpoints
-
 | Method | Endpoint | Description |
 |---|---|---|
 | POST | `/webhook` | GitHub webhook receiver |
 | GET | `/api/reviews` | All recent review records (JSON) |
 | GET | `/api/stats` | Summary statistics |
 | GET | `/api/health` | Health check |
-
----
-```
 
 ---
 
