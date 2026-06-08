@@ -35,7 +35,7 @@ When a PR is opened, the bot automatically fetches the diff, sends it to an AI m
 git clone https://github.com/Aashish2409/codereview-bot
 cd codereview-bot
 ```
-Create a `.env` file (never commit this):
+Create a `.env` file :
 ```env
 GITHUB_TOKEN=github_pat_xxxx
 GITHUB_WEBHOOK_SECRET=your_random_secret_here
