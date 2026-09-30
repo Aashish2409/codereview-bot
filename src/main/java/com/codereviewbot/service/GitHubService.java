@@ -69,7 +69,7 @@ public class GitHubService {
      * @param prNumber      the PR number
      * @param reviewText    the markdown review from Groq
      */
-    public void postReviewComment(String repoFullName, int prNumber, String reviewText) {
+    public Mono<Void> postReviewComment(String repoFullName, int prNumber, String reviewText) {
         String url = githubApiBaseUrl + "/repos/" + repoFullName + "/issues/" + prNumber + "/comments";
 
         // Add a bot header so the comment is clearly from our bot
@@ -89,8 +89,7 @@ public class GitHubService {
                 .contentType(MediaType.APPLICATION_JSON)
                 .bodyValue(requestBody.toString())
                 .retrieve()
-                .bodyToMono(String.class)
-                .block();
+                .bodyToMono(String.class);
 
             log.info("Review comment posted successfully on PR #{}", prNumber);
 
