@@ -42,7 +42,7 @@ public class GitHubService {
      * @param prNumber      the PR number, e.g. 42
      * @return the raw diff string
      */
-    public Mono<String> fetchPullRequestDiff(String repoFullName, int prNumber) {
+    public String fetchPullRequestDiff(String repoFullName, int prNumber) {
         String url = githubApiBaseUrl + "/repos/" + repoFullName + "/pulls/" + prNumber;
         log.info("Fetching diff for PR #{} in {}", prNumber, repoFullName);
 
@@ -53,7 +53,8 @@ public class GitHubService {
                 .header(HttpHeaders.ACCEPT, "application/vnd.github.v3.diff")
                 .header("X-GitHub-Api-Version", "2022-11-28")
                 .retrieve()
-                .bodyToMono(String.class);
+                .bodyToMono(String.class)
+                .block();
 
         } catch (Exception e) {
             log.error("Failed to fetch diff for PR #{} in {}: {}", prNumber, repoFullName, e.getMessage());
