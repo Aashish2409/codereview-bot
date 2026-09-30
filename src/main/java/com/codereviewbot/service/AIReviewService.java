@@ -46,7 +46,7 @@ public class AIReviewService {
      * @return the AI-generated review comment in markdown
      * @throws RuntimeException if the Groq API call fails
      */
-    public Mono<String> generateReview(String diff, String prTitle, String repoName) {
+    public String generateReview(String diff, String prTitle, String repoName) {
         log.info("Sending diff to Groq for repo: {} PR: {}", repoName, prTitle);
 
         // Build the JSON request body
@@ -75,10 +75,7 @@ public class AIReviewService {
                 .bodyValue(requestBody.toString())
                 .retrieve()
                 .bodyToMono(String.class)
-                .map(responseBody -> {
-            JsonNode responseJson = objectMapper.readTree(responseBody);
-            return responseJson.path("choices").get(0).path("message").path("content").asText();
-        });
+                .block(); // blocking is fine here — we're in a webhook handler thread
 
             // Parse the response and extract the message content
             JsonNode responseJson = objectMapper.readTree(responseBody);
